@@ -394,3 +394,13 @@ hr.divider{
 .text-data {
     margin: 0;
 }
+
+p.pagetext{
+    font-size: 12pt;
+    padding: 1%;
+    text-decoration: none;   
+}
+
+img {
+    margin-bottom: 10px;
+}
