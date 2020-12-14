@@ -40,8 +40,16 @@ h3{
 }
 
 a:hover {
-    color: black;
+    color: rgb(194, 194, 194);
     text-decoration: underline;
+}
+
+a:link {
+    color: white;
+  }
+  
+a:visited {
+    color: white;
 }
 .svg-pan-zoom-container {
     width: 800px;
@@ -187,14 +195,14 @@ path.total-tests-light{
       margin-right: 20;
   }
 .pagesubtitle {
-	color: black;
+	color: white;
 	font-family: 'Arial', serif;
 	font-size: 30x;
 	font-weight: bold;
 }
 
 .pagetext {
-	color: black;
+	color: white;
 	font-family: 'Arial', serif;
 	font-size: 12x;
 }
@@ -311,6 +319,16 @@ select option {
     fill: white;
 }
 
+.documentation-main-container {
+    text-align: -webkit-center;
+}
+
+.documentation-content {
+    max-width: 1200px;
+    color: white;
+    text-align: left;
+}
+
 .question-container {
     text-align: -webkit-center;
 }
@@ -375,4 +393,14 @@ hr.divider{
 
 .text-data {
     margin: 0;
+}
+
+p.pagetext{
+    font-size: 12pt;
+    padding: 1%;
+    text-decoration: none;   
+}
+
+img {
+    margin-bottom: 10px;
 }
