@@ -22,151 +22,155 @@
 
     <div class="main-content">
         <div class="viz-content">
-        <div id="sortRadio">
-            <span style="padding-left:2%"><input id="casesCheckBox" type="checkbox" value="casesCheckBox"
-                    onclick="changeLegend(value)"> Cases</span>
-            <span style="padding-left:2%"><input id="recoveredCheckBox" type="checkbox" value="recoveredCheckBox"
-                    onclick="changeLegend(value)"></span>
-            Recovered
-            <span style="padding-left:2%"><input id="testedCheckBox" type="checkbox" value="testedCheckBox"
-                    onclick="changeLegend(value)"> Tested</span>
-            <span style="padding-left:2%"><input id="deathsCheckBox" type="checkbox" value="deathsCheckBox"
-                    onclick="changeLegend(value)"> Deaths</span>
-        </div>
-        <div id="sortRadio2">
-            <span style="padding-left:2%"><input id="casesCheckBox2" type="checkbox" value="casesCheckBox2"
-                    onclick="changeLegend2(value)"> Cases</span>
-            <span style="padding-left:2%"><input id="deathsCheckBox2" type="checkbox" value="deathsCheckBox2"
-                    onclick="changeLegend2(value)"></span>
-            Deaths
+            <div id="sortRadio">
+                <span style="padding-left:2%"><input id="casesCheckBox" type="checkbox" value="casesCheckBox"
+                        onclick="changeLegend(value)"> Cases</span>
+                <span style="padding-left:2%"><input id="recoveredCheckBox" type="checkbox" value="recoveredCheckBox"
+                        onclick="changeLegend(value)"></span>
+                Recovered
+                <span style="padding-left:2%"><input id="testedCheckBox" type="checkbox" value="testedCheckBox"
+                        onclick="changeLegend(value)"> Tested</span>
+                <span style="padding-left:2%"><input id="deathsCheckBox" type="checkbox" value="deathsCheckBox"
+                        onclick="changeLegend(value)"> Deaths</span>
+            </div>
+            <div id="sortRadio2">
+                <span style="padding-left:2%"><input id="casesCheckBox2" type="checkbox" value="casesCheckBox2"
+                        onclick="changeLegend2(value)"> Cases</span>
+                <span style="padding-left:2%"><input id="deathsCheckBox2" type="checkbox" value="deathsCheckBox2"
+                        onclick="changeLegend2(value)"></span>
+                Deaths
+
+            </div>
+
+            <button id="stateButton" class="sort" value="states" onclick="show(value)">State Map</button>
+            <button id="countyButton" class="sort" value="counties" onclick="show(value)">County Map</button>
+            <select class="state-dropdown" id="state-dropdown" name="state" onchange="selectStateFromDropDown()">
+            </select>
+            <hr />
+
+            <div id="viz">
+                <div class="line-chart-container" id="line-chart-container">
+
+                    <div id="positive" class="confirmed">
+                        <p class="chart-title">Confirmed</p>
+                        <p class="chart-date" id="date"></p>
+                        <p class="chart-count" id="confirmed-count"></p>
+                    </div>
+                    <div id="recovered" class="recovered">
+                        <p class="chart-title">Recovered</p>
+                        <p class="chart-date" id="date"></p>
+                        <p class="chart-count" id="recovered-count"></p>
+                    </div>
+                    <div id="deaths" class="deaths">
+                        <p class="chart-title">Deceased</p>
+                        <p class="chart-date" id="date"></p>
+                        <p class="chart-count" id="death-count"></p>
+                    </div>
+                    <div id="totalCases" class="total-tests">
+                        <p class="chart-title">Tested</p>
+                        <p class="chart-date" id="date"></p>
+                        <p class="chart-count" id="tested-count"></p>
+                    </div>
+                </div>
+                <div id="d3-legend-v3" class="map-legend">
+                    <svg style="position:absolute;" id="SmapLegend" width="800" height="120"></svg>
+                    <svg style="position:absolute;" id="SmapLegend2" width="800" height="120"></svg>
+                    <svg style="position:absolute;" id="SmapLegend3" width="800" height="120"></svg>
+                    <svg style="position:absolute;" id="SmapLegend4" width="800" height="120"></svg>
+                    <svg style="position:absolute;" id="CmapLegend" width="800" height="120"></svg>
+                    <svg style="position:absolute;" id="CmapLegend2" width="800" height="120"></svg>
+                </div>
+                <div class="map-viz"></div>
+                <div id="tooltip" style="visibility: hidden; position: absolute;">
+                    <table height="100px" width="100px">
+                        <tr>
+                            <th>State</th>
+                            <th>Tests</th>
+                            <th>Cases</th>
+                            <th>Deaths</th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="svg-pan-zoom-container" id="stateZoom"
+                    data-zoom-on-wheel="zoom-amount: 0.005; max-scale: 20;" data-pan-on-drag="button: left;">
+                    <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet " id="stateMap">
+                        <g transform="translate(0 0)"></g>
+                    </svg>
+                </div>
+                <div class="svg-pan-zoom-container" id="stateZoom2"
+                    data-zoom-on-wheel="zoom-amount: 0.005; max-scale: 20;" data-pan-on-drag="button: left;">
+                    <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet " id="stateMap2">
+                        <g transform="translate(0 0)"></g>
+                    </svg>
+                </div>
+                <div class="svg-pan-zoom-container" id="stateZoom3"
+                    data-zoom-on-wheel="zoom-amount: 0.005; max-scale: 20;" data-pan-on-drag="button: left;">
+                    <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet " id="stateMap3">
+                        <g transform="translate(0 0)"></g>
+                    </svg>
+                </div>
+                <div class="svg-pan-zoom-container" id="stateZoom4"
+                    data-zoom-on-wheel="zoom-amount: 0.005; max-scale: 20;" data-pan-on-drag="button: left;">
+                    <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet " id="stateMap4">
+                        <g transform="translate(0 0)"></g>
+                    </svg>
+                </div>
+                <div class="svg-pan-zoom-container" id="countyZoom"
+                    data-zoom-on-wheel="zoom-amount: 0.005; max-scale: 20;" data-pan-on-drag="button: left;">
+                    <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet " id="countyMap">
+                        <g transform="translate(0 0)"></g>
+                    </svg>
+                </div>
+                <div class="svg-pan-zoom-container" id="countyZoom2"
+                    data-zoom-on-wheel="zoom-amount: 0.005; max-scale: 20;" data-pan-on-drag="button: left;">
+                    <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet " id="countyMap2">
+                        <g transform="translate(0 0)"></g>
+                    </svg>
+                </div>
+                <div class="insight-container-div">
+                    <div class="insight-div confirmed-insights">
+                        <p>Confirmed Per Million</p>
+                        <p id="confirmed-us-data" class="sub-data"></p>
+                        <h3 id="cnf-in-num">93%</h3>
+                        <p id="cnf-ins-txt" class="text-data">For evert 100 confirmed cases, ~ 93 have recovered from
+                            the virus.
+                        </p>
+                    </div>
+                    <div class="insight-div recovered-insights">
+                        <p>Recovery Ratio</p>
+                        <p id="recovered-us-data" class="sub-data"></p>
+                        <h3 id="rec-in-num">93%</h3>
+                        <p id="rec-ins-txt" class="text-data">For evert 100 confirmed cases, ~ 93 have recovered from
+                            the virus.
+                        </p>
+                    </div>
+                    <div class="insight-div mortality-insights">
+                        <p>Mortality Ratio</p>
+                        <p id="death-us-data" class="sub-data"></p>
+                        <h3 id="death-in-num">93%</h3>
+                        <p id="death-ins-txt" class="text-data">For evert 100 confirmed cases, ~ 93 have recovered from
+                            the
+                            virus.</p>
+                    </div>
+                    <div class="insight-div tests-insights">
+                        <p>Tests Per Million</p>
+                        <p id="tests-us-data" class="sub-data"></p>
+                        <h3 id="tst-in-num">93%</h3>
+                        <p id="test-ins-txt" class="text-data">For evert 100 confirmed cases, ~ 93 have recovered from
+                            the
+                            virus.</p>
+                    </div>
+                </div>
+            </div>
 
         </div>
-
-        <button id="stateButton" class="sort" value="states" onclick="show(value)">State Map</button>
-        <button id="countyButton" class="sort" value="counties" onclick="show(value)">County Map</button>
-        <select class="state-dropdown" id="state-dropdown" name="state" onchange="selectStateFromDropDown()">
-        </select>
-        <hr />
-
-        <div id="viz">
-            <div class="line-chart-container" id="line-chart-container">
-
-                <div id="positive" class="confirmed">
-                    <p class="chart-title">Confirmed</p>
-                    <p class="chart-date" id="date"></p>
-                    <p class="chart-count" id="confirmed-count"></p>
-                </div>
-                <div id="recovered" class="recovered">
-                    <p class="chart-title">Recovered</p>
-                    <p class="chart-date" id="date"></p>
-                    <p class="chart-count" id="recovered-count"></p>
-                </div>
-                <div id="deaths" class="deaths">
-                    <p class="chart-title">Deceased</p>
-                    <p class="chart-date" id="date"></p>
-                    <p class="chart-count" id="death-count"></p>
-                </div>
-                <div id="totalCases" class="total-tests">
-                    <p class="chart-title">Tested</p>
-                    <p class="chart-date" id="date"></p>
-                    <p class="chart-count" id="tested-count"></p>
-                </div>
-            </div>
-            <div id="d3-legend-v3" class="map-legend">
-                <svg style="position:absolute;" id="SmapLegend" width="800" height="120"></svg>
-                <svg style="position:absolute;" id="SmapLegend2" width="800" height="120"></svg>
-                <svg style="position:absolute;" id="SmapLegend3" width="800" height="120"></svg>
-                <svg style="position:absolute;" id="SmapLegend4" width="800" height="120"></svg>
-                <svg style="position:absolute;" id="CmapLegend" width="800" height="120"></svg>
-                <svg style="position:absolute;" id="CmapLegend2" width="800" height="120"></svg>
-            </div>
-            <div class="map-viz"></div>
-            <div id="tooltip" style="visibility: hidden; position: absolute;">
-                <table height="100px" width="100px">
-                    <tr>
-                        <th>State</th>
-                        <th>Tests</th>
-                        <th>Cases</th>
-                        <th>Deaths</th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-
-            </div>
-            <div class="svg-pan-zoom-container" id="stateZoom" data-zoom-on-wheel="zoom-amount: 0.005; max-scale: 20;"
-                data-pan-on-drag="button: left;">
-                <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet " id="stateMap">
-                    <g transform="translate(0 0)"></g>
-                </svg>
-            </div>
-            <div class="svg-pan-zoom-container" id="stateZoom2" data-zoom-on-wheel="zoom-amount: 0.005; max-scale: 20;"
-                data-pan-on-drag="button: left;">
-                <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet " id="stateMap2">
-                    <g transform="translate(0 0)"></g>
-                </svg>
-            </div>
-            <div class="svg-pan-zoom-container" id="stateZoom3" data-zoom-on-wheel="zoom-amount: 0.005; max-scale: 20;"
-                data-pan-on-drag="button: left;">
-                <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet " id="stateMap3">
-                    <g transform="translate(0 0)"></g>
-                </svg>
-            </div>
-            <div class="svg-pan-zoom-container" id="stateZoom4" data-zoom-on-wheel="zoom-amount: 0.005; max-scale: 20;"
-                data-pan-on-drag="button: left;">
-                <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet " id="stateMap4">
-                    <g transform="translate(0 0)"></g>
-                </svg>
-            </div>
-            <div class="svg-pan-zoom-container" id="countyZoom" data-zoom-on-wheel="zoom-amount: 0.005; max-scale: 20;"
-                data-pan-on-drag="button: left;">
-                <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet " id="countyMap">
-                    <g transform="translate(0 0)"></g>
-                </svg>
-            </div>
-            <div class="svg-pan-zoom-container" id="countyZoom2" data-zoom-on-wheel="zoom-amount: 0.005; max-scale: 20;"
-                data-pan-on-drag="button: left;">
-                <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet " id="countyMap2">
-                    <g transform="translate(0 0)"></g>
-                </svg>
-            </div>
-            <div class="insight-container-div">
-                <div class="insight-div confirmed-insights">
-                    <p>Confirmed Per Million</p>
-                    <p id="confirmed-us-data" class="sub-data"></p>
-                    <h3 id="cnf-in-num">93%</h3>
-                    <p id="cnf-ins-txt" class="text-data">For evert 100 confirmed cases, ~ 93 have recovered from the virus.
-                    </p>
-                </div>
-                <div class="insight-div recovered-insights">
-                    <p>Recovery Ratio</p>
-                    <p id="recovered-us-data" class="sub-data"></p>
-                    <h3 id="rec-in-num">93%</h3>
-                    <p id="rec-ins-txt" class="text-data">For evert 100 confirmed cases, ~ 93 have recovered from the virus.
-                    </p>
-                </div>
-                <div class="insight-div mortality-insights">
-                    <p>Mortality Ratio</p>
-                    <p id="death-us-data" class="sub-data"></p>
-                    <h3 id="death-in-num">93%</h3>
-                    <p id="death-ins-txt" class="text-data">For evert 100 confirmed cases, ~ 93 have recovered from the
-                        virus.</p>
-                </div>
-                <div class="insight-div tests-insights">
-                    <p>Tests Per Million</p>
-                    <p id="tests-us-data" class="sub-data"></p>
-                    <h3 id="tst-in-num">93%</h3>
-                    <p id="test-ins-txt" class="text-data">For evert 100 confirmed cases, ~ 93 have recovered from the
-                        virus.</p>
-                </div>
-            </div>
-        </div>
-        
-    </div>
     </div>
 
     <div class="question-container">
@@ -234,7 +238,7 @@
         <a href="https://datausa.io/about/api/">DATA USA</a>
         <a href="https://d3-legend-v3.susielu.com/#color-doc">Legend</a>
         <a href="">Source</a>
-    
+
     </div>
     <br>
     <div id="contributors">

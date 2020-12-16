@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<title>Documentation - COVID-19 Map</title>
-	<link type="text/css" rel="stylesheet" href="assets/css/style.css"/>
+	<link type="text/css" rel="stylesheet" href="assets/css/style.css" />
 	<style>
 	</style>
 </head>
@@ -11,11 +12,11 @@
 
 <body class="documentation-main-container">
 	<div class="documentation-content">
-		
+
 		<div style="float: right;">
 			<form>
 				<input class="pagebutton" type="button" value="Visualizations"
-				onclick="window.location.href='index.html'" />
+					onclick="window.location.href='index.html'" />
 			</form>
 		</div>
 		<h1>Project 2 Documentation</h1>
@@ -25,26 +26,42 @@
 			<div class="pagetext">
 				<p>
 
-					Project 2 for<a href = "https://khreda.com/teaching/2020/H517/project2/" style="text-decoration: underline">INFO-H517 Visualization Design,Analysis, & Evaluation class.</a><br>
-					The group members are Darshan Patni, Evan Ruder, Siddhi Joshi, and Nikhil Morar. We built a COVID-19 dashboard using HTML, Javascript, and D3. 
+					Project 2 for<a href="https://khreda.com/teaching/2020/H517/project2/"
+						style="text-decoration: underline">INFO-H517 Visualization Design,Analysis, & Evaluation
+						class.</a><br>
+					The group members are Darshan Patni, Evan Ruder, Siddhi Joshi, and Nikhil Morar. We built a COVID-19
+					dashboard using HTML, Javascript, and D3.
 				</p>
 			</div>
 		</div>
 		<div class="pagesubtitle">Documentation for this project</div>
 		<div class="pagetext">
 			<p>
-				The dataset is obtained from the <a href="https://covidtracking.com/" style="text-decoration: underline">COVID-19 Tracking project</a>and<a href="https://github.com/nytimes/covid-19-data" style="text-decoration: underline">NYTimes.</a><br> This dataset has information from 50 US states and the District of Columbia at daily level. We got the three .csv datasets from Kaggle (Kag goal) that make up the total daily level, then broken down by state, and then county. The data begins with the first reported coronavirus case in Washington State on January 21st, 2020 through September 27th, 2020. We added another dataset to the visual to know the population data from the United States.
+				The dataset is obtained from the <a href="https://covidtracking.com/"
+					style="text-decoration: underline">COVID-19 Tracking project</a>and<a
+					href="https://github.com/nytimes/covid-19-data" style="text-decoration: underline">NYTimes.</a><br>
+				This dataset has information from 50 US states and the District of Columbia at daily level. We got the
+				three .csv datasets from Kaggle (Kag goal) that make up the total daily level, then broken down by
+				state, and then county. The data begins with the first reported coronavirus case in Washington State on
+				January 21st, 2020 through September 27th, 2020. We added another dataset to the visual to know the
+				population data from the United States.
 			</p>
 		</div>
 		<div class="pagesubtitle">Design Process</div>
 		<div class="pagetext">
-			<p class="pagetext">We started the design process by visualizing the data in Tableau, looking for visualizations that provided insights and trends. Following are some screenshots of visualizations we created in Tableau.</p>
+			<p class="pagetext">We started the design process by visualizing the data in Tableau, looking for
+				visualizations that provided insights and trends. Following are some screenshots of visualizations we
+				created in Tableau.</p>
 			<p class="pagetext">
-				<img src="assets/images/tableau1.png" alt="Tableau Visualization of COVID-19 Cases in US" width="600" height="354" />
-				<img src="assets/images/tableau2.png" alt="Line chart showing COVID-19 cases overtime in US" width="600" height="355" />
-				<img src="assets/images/tableau3.png" alt="Line charts showing different trends related to COVID-19 in US." width="600" height="355" />
+				<img src="assets/images/tableau1.png" alt="Tableau Visualization of COVID-19 Cases in US" width="600"
+					height="354" />
+				<img src="assets/images/tableau2.png" alt="Line chart showing COVID-19 cases overtime in US" width="600"
+					height="355" />
+				<img src="assets/images/tableau3.png"
+					alt="Line charts showing different trends related to COVID-19 in US." width="600" height="355" />
 			</p>
-			<p class="pagetext">After understanding the data and trends from the Tableau visualization we drew up some sketches for the website.</p>
+			<p class="pagetext">After understanding the data and trends from the Tableau visualization we drew up some
+				sketches for the website.</p>
 			<p class="pagetext">
 				<img src="assets/images/sketch1.jpg" alt="sketch1.jpg" width="600" height="450" />
 				<img src="assets/images/sketch2.jpg" alt="sketch2-1.jpg" width="600" height="450" />
@@ -55,26 +72,54 @@
 				<img src="assets/images/dashboard.jpeg" alt="dashboard.jpeg" width="800" height="565" />
 			</p>
 			<p>
-				To start off, we put the map together with geo json data and built in functions in d3. The default map is colored based on confirmed positive covid cases in that state. As you hover over each state, the line graphs on the right update to that specific state. All the maps are zoomable and pannable. After going through many different variations within the hovering functionality, we decided that displaying a tooltip would be helpful and not distracting, especially for those who are unfamiliar with the United States. The tooltip shows the state name, and number of cases, deaths, and tests. Adding a legend to the map was from d3 map legend plug in that allowed us to quantize the various filter variables which also determines the color for each state. You can filter the map coloring with the checkboxes at the top and the colors will interpret the data for each variable. We have also considered coloring the map based on per capita ratios of the COVID case statistics but as default the raw data seemed important to reflect considering the severity of the topic. Despite this, we did include a per capita calculation that will be discussed later.The creation of the county map was done very similarly to the state one and functions in a similar way minus the line chart interaction. While the line graphs do not interact with the county map, you can still hover over and view specific counties. The COVID data limits in the county dataset were for cases and deaths. There were plenty of counties with missing data and inconsistencies with the naming (Alaska) between the GEOJSON and our COVID 19 data. This meant going through each so that data was not missing and that naming stayed consistent.
+				To start off, we put the map together with geo json data and built in functions in d3. The default map
+				is colored based on confirmed positive covid cases in that state. As you hover over each state, the line
+				graphs on the right update to that specific state. All the maps are zoomable and pannable. After going
+				through many different variations within the hovering functionality, we decided that displaying a
+				tooltip would be helpful and not distracting, especially for those who are unfamiliar with the United
+				States. The tooltip shows the state name, and number of cases, deaths, and tests. Adding a legend to the
+				map was from d3 map legend plug in that allowed us to quantize the various filter variables which also
+				determines the color for each state. You can filter the map coloring with the checkboxes at the top and
+				the colors will interpret the data for each variable. We have also considered coloring the map based on
+				per capita ratios of the COVID case statistics but as default the raw data seemed important to reflect
+				considering the severity of the topic. Despite this, we did include a per capita calculation that will
+				be discussed later.The creation of the county map was done very similarly to the state one and functions
+				in a similar way minus the line chart interaction. While the line graphs do not interact with the county
+				map, you can still hover over and view specific counties. The COVID data limits in the county dataset
+				were for cases and deaths. There were plenty of counties with missing data and inconsistencies with the
+				naming (Alaska) between the GEOJSON and our COVID 19 data. This meant going through each so that data
+				was not missing and that naming stayed consistent.
 
-			</p>	
+			</p>
 		</div>
 		<div class="pagesubtitle">Conclusions/Findings</div>
 		<div class="pagetext">
 			<p>
-				In conclusion, the team was able to visualize the number of total tested, positive, recovered, and death cases state wise and in a temporal manner. The map helps showcase how each state and county was affected for these parameters. The line charts help the users understand how these parameters compare with each other. 
+				In conclusion, the team was able to visualize the number of total tested, positive, recovered, and death
+				cases state wise and in a temporal manner. The map helps showcase how each state and county was affected
+				for these parameters. The line charts help the users understand how these parameters compare with each
+				other.
 			</p>
 		</div>
 		<div class="pagesubtitle">Works Cited</div>
 		<div class="pagetext">
 			<ul>
-				<li><a href="https://bl.ocks.org/Qizly/8f6ba236b79d9bb03a80">Line Chart with Tooltip 1 - bl.ocks.org</a></li>
+				<a href="http://bl.ocks.org/michellechandra/0b2ce4923dc9b5809922">Map</a>
+				<a href="https://eric.clst.org/tech/usgeojson/">US GeoJSON Data</a>
+				<a href="https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html">Census
+					Bureau Data</a>
+				<a href="https://www.kaggle.com/sudalairajkumar/covid19-in-usa?select=us_counties_covid19_daily.csv">COVID-19
+					Data</a>
+				<a href="https://d3-legend-v3.susielu.com/#color-doc">Legend</a>
+				<li><a href="https://bl.ocks.org/Qizly/8f6ba236b79d9bb03a80">Line Chart with Tooltip 1 - bl.ocks.org</a>
+				</li>
 				<li><a href="https://bl.ocks.org/d3noob/4414436">Simple line graph in d3.js - bl.ocks.org</a></li>
-				<li><a href="https://bl.ocks.org/d3noob/e34791a32a54e015f57d">d3.js line graph with dual Y axes - bl.ocks.org</a></li>
+				<li><a href="https://bl.ocks.org/d3noob/e34791a32a54e015f57d">d3.js line graph with dual Y axes -
+						bl.ocks.org</a></li>
 			</ul>
 		</div>
 	</div>
-</div>
+	</div>
 </body>
 
 
